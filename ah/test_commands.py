@@ -2,6 +2,8 @@ import unittest
 from click.testing import CliRunner
 from .commands import view, list
 
+# TODO: Change the tests from making actual calls to the API but instead use mock library
+
 class TestCommands(unittest.TestCase):
     runner = CliRunner()
 
