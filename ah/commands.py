@@ -45,15 +45,21 @@ def view(slug, save):
 @ah.command()
 @click.option('--limit', default=2, type=int,
                 help='Limit how many articles are displayed')
-def list(limit):
+@click.option('--search', type=str,
+                help='Enter name to filter the articles by author')
+def list(limit, search):
     '''
     Command that allows users to view all the articles in the database
     and have the option to limit how many they view
 
     '''
     try: 
-        if limit:
+        if limit and not search:
             data = requests.get(url + '?page_size=' + str(limit))
+        elif search and not limit:
+            data = requests.get(url + '?author=' + str(search))
+        elif search and limit:
+            data = requests.get(url + '?page_size={}&author={}'.format(limit, search) )
         else:
             data = requests.get(url)
 
