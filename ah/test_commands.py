@@ -9,15 +9,15 @@ class TestCommands(unittest.TestCase):
 
     def test_view_article(self):
         
-        response = self.runner.invoke(view, ['dragon-rider'])
+        response = self.runner.invoke(view, ['responsive-images'])
         assert response.exit_code == 0
-        assert "dragon-rider" in response.output
+        assert "responsive-images" in response.output
         assert "article" in response.output
 
     def test_list_articles(self):
         response = self.runner.invoke(list)
         assert response.exit_code == 0
-        assert "dragon-rider" in response.output
+        assert "responsive-images" in response.output
         assert "articles" in response.output
 
     def test_article_with_wrong_slug(self):
